@@ -1,23 +1,179 @@
 body {
-  margin: 0;
+    margin: 10px;
+    font-family: 'Lato', sans-serif;
+    max-width: 1500px;
+}
+button:hover {
+    cursor: pointer;
+    size: 20px;
+    transform: scale(1.1) perspective(1px);
 }
 
 .main {
-  padding: 8px;
+    padding: 8px;
 }
 
-.task {
-  display: flex;
-  align-items: center;
-  border: 1px solid black;
-  padding: 2px;
-  max-width: 200px;
+.searchBarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Add this line to center vertically */
 }
 
-.task + .task {
-  margin-top: 4px;
+.searchBar {
+    display: flex;
+    align-items: center;
+    border-radius: 0;
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+.searchInput1 {
+    width: 600px;
+}
+.searchInput1 .searchInput {
+    width: 500px;
+    height: 30px;
+    background-color: rgba(199, 196, 196, 0.303);
+    border-radius: 5px;
+    margin: auto;
+    border: none;
+    font-family: Lato;
+}
+.signUpBtnContainer {
+    display: flex;
+    align-items: center;
+}
+.sellBtn {
+    display: block;
+    align-items: center;
+    height: 20px;
+    margin-left: auto;
+    margin-right: 0;
+    background-color: #54a3ac;
+    border: 1px solid #54a3ac;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    padding-right: 10px;
 }
 
-.task > * + * {
-  margin-left: 4px;
+.signUpBtn {
+    display: block;
+    align-items: center;
+    height: 20px;
+    margin-left: auto;
+    margin-right: 0;
+    background-color: white;
+    border: 1px solid #54a3ac;
+    border-radius: 5px;
+    color: #54a3ac;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+}
+.signUpBtnContainer .sellBtn {
+    margin-left: 10px; /* Adjust the value to your desired gap size */
+}
+
+.vintedLogo {
+    height: 35px;
+    width: auto;
+}
+.CardHolderContainer {
+    margin-top: 50px;
+}
+
+.photoContainer {
+    margin-right: 20px;
+}
+.photo {
+    width: 60%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+}
+.likedItemsContainer {
+    height: 100px;
+    width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    outline: 1px solid black;
+}
+.cardHolder {
+    align-items: center;
+    display: inline-flex;
+    border: 1px solid black;
+    margin: 5px;
+}
+.card {
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background-color: beige;
+}
+.heartBtn {
+    background-color: transparent;
+    border: none;
+}
+.title {
+    margin-top: 10px;
+    overflow-wrap: break-word;
+    word-wrap: break-word; /* Fallback for older browsers */
+}
+
+.LoginContainer {
+    margin: auto;
+    height: 80px;
+    width: 60%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.SignUpContainer {
+    margin: auto;
+    height: 80px;
+    width: 60%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.GuestBtnContainer {
+    margin: auto;
+    height: 80px;
+    width: 60%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.welcomeBannerContainer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 300px;
+}
+.welcomeBannerContainer .bannerPhoto {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+}
+
+.LoginCard {
+    margin: 0 auto;
+    margin-top: 200px;
+}
+.SignUpCard {
+    margin: auto;
+}
+.formLogin {
+    display: grid;
+    height: 20px;
 }

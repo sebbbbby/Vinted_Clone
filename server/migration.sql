@@ -1,12 +1,16 @@
-DROP TABLE IF EXISTS tasks;
+DROP TABLE IF EXISTS users;
 
-CREATE TABLE tasks (
-  id SERIAL,
-  description TEXT
+CREATE TABLE users (
+  user_id SERIAL,
+  user_email VARCHAR(200),
+  clothes_id SERIAL,
+  title TEXT,
+  price DECIMAL,
+  category TEXT,
+  description TEXT,
+  image VARCHAR(200)
 );
 
-INSERT INTO tasks(description) VALUES('Do the dishes');
-INSERT INTO tasks(description) VALUES('Walk the dog');
-INSERT INTO tasks(description) VALUES('Sweep the floor');
-INSERT INTO tasks(description) VALUES('Do your homework');
-INSERT INTO tasks(description) VALUES('Beat Elden Ring');
+INSERT INTO users(user_email) VALUES('seb');
+
+
