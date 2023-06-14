@@ -110,9 +110,9 @@ app.post('/api/likeditem', (req, res) => {
     const clothesId = likedItemObj['clothes_id']
     const clothesTitle = likedItemObj['title']
     const clothesPrice = likedItemObj['price']
-    const clothesCat = likedItemObj['category']
+    const clothesCat = likedItemObj['category']['name']
     const clothesDescription = likedItemObj['description']
-    const clothesImg = likedItemObj['image']
+    const clothesImg = likedItemObj['category']['image']
     const userIdNum = likedItemObj['user_id']
     sql.query(
         `INSERT INTO liked_items (clothes_id, title, price, category, description, image, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7)`,

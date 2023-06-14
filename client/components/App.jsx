@@ -37,7 +37,7 @@ const App = () => {
     }, [allUsers, userId])
 
     useEffect(() => {
-        fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=10')
+        fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=20')
             .then((res) => res.json())
             .then((items) => {
                 setItems(items)

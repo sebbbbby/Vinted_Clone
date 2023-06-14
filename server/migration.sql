@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS users;
-
+DROP TABLE IF EXISTS liked_items;
 CREATE TABLE users (
   user_id SERIAL PRIMARY KEY,
   user_email VARCHAR(200)
@@ -7,7 +7,8 @@ CREATE TABLE users (
 INSERT INTO users(user_email) VALUES('seb');
 INSERT INTO users(user_email) VALUES('test');
 INSERT INTO users(user_email) VALUES('steseb');
-DROP TABLE IF EXISTS liked_items;
+
+
 
 CREATE TABLE liked_items(
   clothes_id SERIAL,

@@ -63,44 +63,46 @@ const LoginPage = ({
     }
     return (
         <>
+            <div className="loginPageContainer">
+                <div className="LoginContainer">
+                    <div className="LoginCard">
+                        <h1>Log-In </h1>
+                        <form
+                            action="inputId"
+                            onSubmit={submitResponse}
+                            className="formLogin"
+                        >
+                            <input
+                                type="text"
+                                value={userResponse}
+                                onChange={takeInId}
+                            />
+                        </form>
+                    </div>
+                </div>
+
+                <div className="SignUpContainer">
+                    <div className="SignUpCard">
+                        <h1>Sign-Up</h1>
+                        <form
+                            action="inputId"
+                            onSubmit={submitResponseSignUp}
+                            className="formSignUp"
+                        >
+                            <input
+                                type="text"
+                                value={userResponseSignUp}
+                                onChange={takeInSignUp}
+                            />
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div className="GuestBtnContainer">
                 <div className="GuestBtnCard">
                     <button onClick={submitResponseGuest}>
                         Continue as Guest
                     </button>
-                </div>
-            </div>
-            <div className="LoginContainer">
-                <div className="LoginCard">
-                    <h1>Log-In </h1>
-                    <form
-                        action="inputId"
-                        onSubmit={submitResponse}
-                        className="formLogin"
-                    >
-                        <input
-                            type="text"
-                            value={userResponse}
-                            onChange={takeInId}
-                        />
-                    </form>
-                </div>
-            </div>
-
-            <div className="SignUpContainer">
-                <div className="SignUpCard">
-                    <h1>Sign-Up</h1>
-                    <form
-                        action="inputId"
-                        onSubmit={submitResponseSignUp}
-                        className="formSignUp"
-                    >
-                        <input
-                            type="text"
-                            value={userResponseSignUp}
-                            onChange={takeInSignUp}
-                        />
-                    </form>
                 </div>
             </div>
         </>
