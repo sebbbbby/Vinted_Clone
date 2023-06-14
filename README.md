@@ -16,7 +16,7 @@ It uses vite as the module bundler and dotenv for configuration. It's organized 
 
 1. Install dependencies: `npm install`
 1. Create your database: `createdb YOUR_DB`
-1. Run your migrations: `psql -f server/migration.sql YOUR_DB`
+1. Run your migrations: `psql -f server/migration.sql vinted`
 1. Create your `.env` file: `cp .env.template .env`
 1. Add your info in `.env`
 1. Run the app: `npm run dev`
@@ -25,16 +25,16 @@ It uses vite as the module bundler and dotenv for configuration. It's organized 
 
 **Root**
 
-- `npm run dev` - Runs the API server and hosts your frontend assets.
-- `npm run dev:server` - Runs the API server in watch mode.
-- `npm run dev:client` - Hosts your frontend assets.
+-   `npm run dev` - Runs the API server and hosts your frontend assets.
+-   `npm run dev:server` - Runs the API server in watch mode.
+-   `npm run dev:client` - Hosts your frontend assets.
 
 **/client**
 
-- `npm run dev` - Hosts your assets.
-- `npm run build` - Builds your assets (mainly used in CI/CD).
+-   `npm run dev` - Hosts your assets.
+-   `npm run build` - Builds your assets (mainly used in CI/CD).
 
 **/server**
 
-- `npm run dev` - Runs the server in watch mode.
-- `npm run start` - Starts the server (mainly used when deploying).
+-   `npm run dev` - Runs the server in watch mode.
+-   `npm run start` - Starts the server (mainly used when deploying).

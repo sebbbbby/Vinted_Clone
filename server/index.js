@@ -25,12 +25,39 @@ app.get('/api/users', (req, res) => {
             res.status(500).send('Internal Server Error')
         })
 })
-//coundnt get this to work
+
+app.get('/api/likedItems', (req, res) => {
+    // const user_email = req.params.user_email
+    sql.query('SELECT * FROM liked_items')
+        .then((results) => {
+            res.send(results.rows)
+            // console.log(results.rows)
+        })
+        .catch((error) => {
+            console.error(error)
+            res.status(500).send('Internal Server Error')
+        })
+})
+//coundnt get this to work with react, i have it working server
 app.get('/api/:user_email', (req, res) => {
     const newUserEmail = req.params.user_email
     // const newUserEmail = userInputObj['user_email']
     console.log(newUserEmail)
     sql.query(`SELECT * FROM users WHERE user_email = $1 `, [newUserEmail])
+        .then((results) => {
+            res.send(results.rows)
+            console.log(results.rows)
+        })
+        .catch((error) => {
+            console.error(error)
+            res.status(500).send('Internal Server Error')
+        })
+})
+app.get('/api/likeditems/:user_id', (req, res) => {
+    const newUserid = req.params.user_id
+    // const newUserid = userInputObj['user_id']
+    console.log(newUserid)
+    sql.query(`SELECT * FROM liked_items WHERE user_id = $1 `, [newUserid])
         .then((results) => {
             res.send(results.rows)
             console.log(results.rows)
@@ -76,6 +103,42 @@ app.post('/api/newuser', (req, res) => {
         }
     )
 })
+app.post('/api/likeditem', (req, res) => {
+    //this will be the main req.body with all the items/description of the item to be added
+    const likedItemObj = req.body
+    //this is where i assign the items to the specific user
+    const clothesId = likedItemObj['clothes_id']
+    const clothesTitle = likedItemObj['title']
+    const clothesPrice = likedItemObj['price']
+    const clothesCat = likedItemObj['category']
+    const clothesDescription = likedItemObj['description']
+    const clothesImg = likedItemObj['image']
+    const userIdNum = likedItemObj['user_id']
+    sql.query(
+        `INSERT INTO liked_items (clothes_id, title, price, category, description, image, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
+        [
+            clothesId,
+            clothesTitle,
+            clothesPrice,
+            clothesCat,
+            clothesDescription,
+            clothesImg,
+            userIdNum,
+        ],
+        (error, result) => {
+            if (error) {
+                console.error(error)
+                res.status(500).send('Internal server error.')
+                return
+            }
+            console.log(result.rows[0], 'this')
+            const likedItems = result.rows[0]
+            console.log(likedItems, 'this??')
+            res.status(200).json(likedItems)
+        }
+    )
+})
+
 app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`)
 })

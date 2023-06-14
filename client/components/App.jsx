@@ -13,30 +13,35 @@ const App = () => {
     const [userResponse, setUserResponse] = useState('')
     const [userResponseSignUp, setUserResponseSignUp] = useState('')
     const [allUsers, setAllUsers] = useState([])
+    const [allEmails, setAllEmails] = useState([])
+    const [userObj, setUserObj] = useState([])
+    const [test, setTest] = useState([])
 
     //getting full list of users and adding them to userEmails to then check later
     useEffect(() => {
         fetch(`/api/users`)
             .then((res) => res.json())
             .then((users) => {
-                const userEmails = users.map((user) => user.user_email)
-                console.log(userEmails)
-                setAllUsers(userEmails)
-                console.log(allUsers)
+                const userEmailsObj = users.map((user) => user)
+                // console.log(userEmailsObj)
+                setAllUsers(userEmailsObj)
             })
-    }, [])
-    //just testing all users list
+    }, [userId])
+
     useEffect(() => {
-        console.log(allUsers)
+        const userEmails = allUsers.map((user) => ({
+            user_id: user.user_id,
+            user_email: user.user_email,
+        }))
+        setAllEmails(userEmails)
     }, [allUsers, userId])
 
-    //10 items from clothing api
     useEffect(() => {
         fetch('https://api.escuelajs.co/api/v1/products?offset=0&limit=10')
             .then((res) => res.json())
             .then((items) => {
                 setItems(items)
-                console.log(items)
+                // console.log(items)
             })
     }, [])
 
@@ -47,14 +52,18 @@ const App = () => {
 
     //this resets the page after a login, so maybe add sign up into this?
     const resetPage = () => {
-        if (allUsers.includes(userResponse)) {
+        const foundEmailObj = allEmails.find(
+            (emailObj) => emailObj.user_email === userResponse
+        )
+
+        if (foundEmailObj) {
             setSignedIn(true)
-            console.log('reset', userResponse)
+            console.log('reset', foundEmailObj)
             setShowLogin(false)
+            setUserObj(foundEmailObj)
             setUserId(userResponse)
         } else {
             console.log('failed', userResponse)
-            alert('created new account')
         }
     }
     //signOut function clears the userResponse and setSignedin to false to allow for the main page to pop up
@@ -62,6 +71,34 @@ const App = () => {
         setSignedIn(false)
         setUserResponse('')
         setUserId('')
+    }
+    const likedItemBtn = (item) => {
+        setUserId(userId)
+        console.log(userId)
+        console.log('BIG BALLER', userObj.user_id)
+
+        if (userId === '') {
+            alert('please sign in')
+        } else {
+            const likedItemList = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    clothes_id: item.id,
+                    title: item.title,
+                    price: item.price,
+                    category: item.category,
+                    description: item.description,
+                    image: item.image,
+                    user_id: userObj.user_id,
+                }),
+            }
+
+            fetch('/api/likeditem', likedItemList)
+                .then((response) => response.json())
+                .then((data) => console.log('fetch data', data))
+                .catch((error) => console.log('Error:', error))
+        }
     }
 
     return showLogin ? (
@@ -72,6 +109,9 @@ const App = () => {
             userResponseSignUp={userResponseSignUp}
             setUserResponseSignUp={setUserResponseSignUp}
             setShowLogin={setShowLogin}
+            setSignedIn={setSignedIn}
+            setUserId={setUserId}
+            allUsers={allUsers}
         />
     ) : (
         <main>
@@ -82,7 +122,11 @@ const App = () => {
                 signedIn={signedIn}
                 signOutFunction={signOutFunction}
             />
-            <LikedItems userId={userId} likedItems={likedItems} />
+            <LikedItems
+                userId={userId}
+                likedItems={likedItems}
+                userObj={userObj}
+            />
             <div className="CardHolderContainer">
                 {items.map((item) => (
                     <>
@@ -99,7 +143,10 @@ const App = () => {
                                         <br></br>
                                         {item.price}
                                     </span>
-                                    <button className="heartBtn">
+                                    <button
+                                        onClick={() => likedItemBtn(item)}
+                                        className="heartBtn"
+                                    >
                                         <i className="gg-heart"></i>
                                     </button>
                                 </div>

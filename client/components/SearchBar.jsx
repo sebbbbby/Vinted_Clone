@@ -6,24 +6,10 @@ export const SearchBar = ({
     signOutFunction,
 }) => {
     // const [signedUser, setSignedUser] = useState('')
-    // const [email, setEmail] = useState('')
-    // // const [showLogin, setShowLogin] = useState(false)
 
     const handleSignUpClick = () => {
         setShowLogin(true)
     }
-
-    // const handleLogin = (e) => {
-    //     e.preventDefault()
-    //     // Perform login logic here with email and password
-    //     if (email === signedUser) {
-    //         setSignedUser(email)
-    //         setEmail('')
-    //         setShowLogin(false)
-    //     } else {
-    //         console.log('Invalid email or password. Please try again.')
-    //     }
-    // }
 
     return signedIn ? (
         <div className="searchBarContainer ">

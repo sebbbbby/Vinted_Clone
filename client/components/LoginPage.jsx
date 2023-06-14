@@ -9,6 +9,8 @@ const LoginPage = ({
     userResponseSignUp,
     setUserId,
     setShowLogin,
+    setSignedIn,
+    allUsers,
 }) => {
     const takeInId = (event) => {
         setUserResponse(event.target.value)
@@ -30,14 +32,24 @@ const LoginPage = ({
     //need this seperate for signup not sign in
     const submitResponseSignUp = (event) => {
         event.preventDefault()
+        setSignedIn(true)
         newUser(userResponseSignUp)
         setUserResponseSignUp('')
     }
 
     const newUser = (email) => {
-        setShowLogin(false)
-        setUserId(userResponse)
-        setUserResponseSignUp('')
+        if (allUsers.includes(email)) {
+            alert('account already exists')
+            return
+        } else {
+            console.log('failed', email)
+            alert('created new account')
+            setSignedIn(true)
+            console.log('loginPage', email)
+            setShowLogin(false)
+            setUserId(email)
+        }
+
         const createNewUser = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
